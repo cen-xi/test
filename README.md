@@ -1,0 +1,1 @@
+用于测试 spring cloud config 从git仓库获取文件
