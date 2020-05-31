@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--声明项目描述符遵循哪一个POM模型版本。模型本身的版本很少改变，虽然如此，但它仍然是必不可少的，
+    这是为了当Maven引入了新的特性或者其他模型变更的时候，确保稳定性。-->
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <!--     方法一 ： spring boot 的版本控制 ，一般 可不使用这样写-->
+    <!--        <parent>-->
+    <!--            &lt;!&ndash;被继承的父项目的构件标识符&ndash;&gt;-->
+    <!--            <groupId>org.springframework.boot</groupId>-->
+    <!--            &lt;!&ndash;被继承的父项目的全球唯一标识符&ndash;&gt;-->
+    <!--            <artifactId>spring-boot-starter-parent</artifactId>-->
+    <!--            &lt;!&ndash;        spring boot 的版本号&ndash;&gt;-->
+    <!--            &lt;!&ndash;被继承的父项目的版本&ndash;&gt;-->
+    <!--            <version>2.1.6.RELEASE</version>-->
+    <!--            &lt;!&ndash; 父项目的pom.xml文件的相对路径。相对路径允许你选择一个不同的路径。-->
+    <!--            默认值是../pom.xml。Maven首先在构建当前项目的地方寻找父项 目的pom，-->
+    <!--            其次在文件系统的这个位置（relativePath位置），然后在本地仓库，-->
+    <!--            最后在远程仓库寻找父项目的pom。&ndash;&gt;-->
+    <!--            <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+    <!--        </parent>-->
+
+    <!--构件标识符-->
+    <groupId>cen.cloud</groupId>
+    <!--全球唯一标识符-->
+    <artifactId>cen-mycloud</artifactId>
+    <!--    版本号-->
+    <version>0.0.1-SNAPSHOT</version>
+    <!--    项目名称-->
+    <name>cen-mycloud</name>
+    <!--    描述-->
+    <description>Demo project for Spring Boot</description>
+    <!--	//打包方式-->
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <!--指定Maven用什么编码来读取源码及文档 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--指定Maven用什么编码来呈现站点的HTML文件 -->
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <junit.version>4.12</junit.version>
+        <log4j.version>1.7.12</log4j.version>
+        <lombok.version>1.16.18</lombok.version>
+    </properties>
+
+    <!--    Maven中的dependencyManagement元素提供了一-->
+    <!--    种管理依赖版本号的方式。在dependencyManagement元素中声明所依赖的jar包的-->
+    <!--    版本号等信息，那么所有子项目再次引入此依赖jar包时则无需显式的列出版本号。-->
+    <!--    Maven会沿着父子层级向上寻找拥有dependencyManagement 元素的项目，然后使用它指定的版本号。-->
+
+    <dependencyManagement>
+        <!--进行项目依赖版本通过一管理-->
+        <dependencies>
+            <!-- 方法二 ： spring boot 的版本控制 ，与<parent>标签作用等同-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>2.1.6.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--  spring cloud 的版本控制 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.SR2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--            &lt;!&ndash;mysql&ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>mysql</groupId>-->
+            <!--                <artifactId>mysql-connector-java</artifactId>-->
+            <!--                <version>5.0.4</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash;   数据库连接池 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.alibaba</groupId>-->
+            <!--                <artifactId>druid</artifactId>-->
+            <!--                <version>1.0.31</version>-->
+            <!--            </dependency>-->
+            <!--            &lt;!&ndash; mybatis&ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.mybatis.spring.boot</groupId>-->
+            <!--                <artifactId>mybatis-spring-boot-starter</artifactId>-->
+            <!--                <version>1.3.0</version>-->
+            <!--            </dependency>-->
+
+            <!--            &lt;!&ndash; web 组件&ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-starter-web</artifactId>-->
+            <!--            </dependency>-->
+
+            <!-- 日志-->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <!--日志框架，是log4j的继承人-->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+
+            <!-- 单元测试-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- 懒编译 依赖包 ，具体 参看 https://www.jianshu.com/p/2543c71a8e45-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+    <!--    -->
+    <build>
+        <!--     设置打包名字，不写则默认为【项目名字-版本号】  -->
+        <!--        <finalName>cen-mycloud</finalName>-->
+
+        <!--这个元素描述了项目相关的所有资源路径列表，
+        例如和项目相关的属性文件，这些资源被包含在最终的打包文件里。-->
+        <!--        在springmvc需要在这里设置xml文件编译到指定位置-->
+        <resources>
+            <resource>
+                <!--描述存放资源的目录，该路径相对POM路径-->
+                <directory>src/main/resources</directory>
+                <!--是否使用参数值代替参数名。参数值取自properties
+                元素或者文件里配置的属性，文件在filters元素里列出。-->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <!--使用的插件列表-->
+        <plugins>
+            <!--  Resources插件负责处理项目资源文件并拷贝到输出目录-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimit>$</delimit>
+                    </delimiters>
+                </configuration>
+            </plugin>
+
+            <!--            &lt;!&ndash;            以Maven的方式为应用提供Spring Boot的支持，即为Spring Boot应用提供了执行Maven操作的可能。&ndash;&gt;-->
+            <!--            <plugin>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--            </plugin>-->
+        </plugins>
+    </build>
+    <!--	指出子模块的artifactId，有多少个子maven这里就有多少个<module>-->
+    <modules>
+        <module>eureka-7001</module>
+        <module>eureka-7002</module>
+        <module>provider-8001</module>
+        <module>consumer-9001</module>
+        <module>config-server-6001</module>
+    </modules>
+
+</project>
